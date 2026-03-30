@@ -80,4 +80,64 @@ This structure facilitates future difference-in-differences (DiD) analysis to st
 - Only majority acquisitions are retained.  
 - Very small deals are excluded to improve data quality.  
 - The sample is designed to be mergeable with firm-level financial and market data.  
-- Variable definitions and availability are documented in the *M&A Variable Checklist*.  
+- Variable definitions and availability are documented in the *M&A Variable Checklist*.
+
+
+# IPO Data README
+
+## File Location
+
+The IPO dataset is stored in the following directory:
+
+`Documents/Dataset_WS/Raw_Data/IPO.xlsx`
+
+The related M&A data folder is stored separately under:
+
+`Documents/Dataset_WS/Raw_Data/M&A/`
+
+---
+
+## Data Source
+
+The IPO data was collected from **LSEG Workspace Screener** under the **Deals** universe.
+
+To identify IPO transactions, the more appropriate screening criteria are:
+
+- **Issue Type** = IPO  
+- **Transaction Status** = Announced + Cancelled  
+- **Issuer/Borrower Nation** or **Nation of Headquarters** = United States  
+- **Issue Date** = 1962–2026  
+
+These filters are designed to produce a U.S. IPO sample that includes both completed and withdrawn offerings.
+
+---
+
+## Notes on Screening Logic
+
+The IPO sample should **not** use M&A-specific filters such as:
+
+- Rank Value Including Net Debt of Target > 5 million USD  
+- Percentage of Shares Owned after Transaction > 50%  
+- Target Public Status = Public  
+
+These are appropriate for mergers and acquisitions, but not for IPO screening.
+
+---
+
+## Variable Checklist
+
+For the detailed variable list and export fields, please refer to:
+
+`IPO Variable Checklist`
+
+This checklist contains the specific variables to verify and retain for the IPO dataset.
+
+---
+
+## Output File
+
+The current exported IPO dataset is:
+
+`Documents/Dataset_WS/Raw_Data/IPO.xlsx`
+
+
