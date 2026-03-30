@@ -83,61 +83,93 @@ This structure facilitates future difference-in-differences (DiD) analysis to st
 - Variable definitions and availability are documented in the *M&A Variable Checklist*.
 
 
-# IPO Data README
+# IPO Data Construction README
 
-## File Location
+## 1. Data Source
 
-The IPO dataset is stored in the following directory:
+The dataset is obtained from Refinitiv Workspace (LSEG Workspace) using the Deals Screener module, focusing on equity issuance transactions, specifically initial public offerings (IPOs).
+
+---
+
+## 2. Raw Data Description
+
+The raw IPO dataset is downloaded from Refinitiv Workspace under the Deals universe, covering the full available time span:
+
+- **Time Period:** January 1962 – March 2026  
+- **Universe:** Deals  
+- **Asset Class:** Equity  
+
+The set of variables included in the raw dataset follows the predefined list in the *IPO Variable Checklist*.
+
+---
+
+## 3. Sample Selection Criteria
+
+The following filters are applied to construct the final analytical sample:
+
+### (1) Issue Type
+
+Include:
+- IPO  
+
+This restriction ensures that the sample only contains initial public offerings, excluding other equity issuance types such as seasoned equity offerings (SEOs), private placements, and other non-IPO transactions.
+
+---
+
+### (2) Transaction Status
+
+Include:
+- Announced  
+- Cancelled  
+
+This allows the construction of a treatment and control group:
+
+- Announced IPOs serve as completed (successful) offerings  
+- Cancelled IPOs serve as withdrawn (unsuccessful) offerings  
+
+This structure follows the standard empirical approach in the IPO literature, where withdrawn IPOs provide a natural counterfactual.
+
+---
+
+### (3) Geographic Restriction
+
+- Issuer/Borrower Nation or Nation of Headquarters = United States  
+
+This restriction ensures consistency with U.S.-focused financial datasets such as CRSP and Compustat.
+
+---
+
+### (4) Time Period
+
+- Issue Date: January 1962 – March 2026  
+
+The sample period is restricted to ensure consistency with available financial and market data.
+
+---
+
+## 4. Purpose of Sample Design
+
+The inclusion of both announced and cancelled IPOs enables a quasi-experimental design:
+
+- Announced IPOs serve as the treatment group  
+- Cancelled IPOs serve as the control group  
+
+This structure facilitates empirical analysis of IPO success, withdrawal decisions, and the determinants of capital market access.
+
+---
+
+## 5. Notes
+
+- M&A-specific filters (e.g., deal size, ownership thresholds) are not applicable to IPO data and are therefore excluded.  
+- The sample focuses on U.S. IPO activity to ensure compatibility with firm-level financial datasets.  
+- Additional filters (e.g., security type or exclusion of special vehicles such as REITs, ADRs, or SPACs) may be applied depending on research design.  
+- Variable definitions and availability are documented in the *IPO Variable Checklist*.
+
+---
+
+## 6. File Location
+
+The IPO dataset is stored at:
 
 `Documents/Dataset_WS/Raw_Data/IPO.xlsx`
-
-The related M&A data folder is stored separately under:
-
-`Documents/Dataset_WS/Raw_Data/M&A/`
-
----
-
-## Data Source
-
-The IPO data was collected from **LSEG Workspace Screener** under the **Deals** universe.
-
-To identify IPO transactions, the more appropriate screening criteria are:
-
-- **Issue Type** = IPO  
-- **Transaction Status** = Announced + Cancelled  
-- **Issuer/Borrower Nation** or **Nation of Headquarters** = United States  
-- **Issue Date** = 1962–2026  
-
-These filters are designed to produce a U.S. IPO sample that includes both completed and withdrawn offerings.
-
----
-
-## Notes on Screening Logic
-
-The IPO sample should **not** use M&A-specific filters such as:
-
-- Rank Value Including Net Debt of Target > 5 million USD  
-- Percentage of Shares Owned after Transaction > 50%  
-- Target Public Status = Public  
-
-These are appropriate for mergers and acquisitions, but not for IPO screening.
-
----
-
-## Variable Checklist
-
-For the detailed variable list and export fields, please refer to:
-
-`IPO Variable Checklist`
-
-This checklist contains the specific variables to verify and retain for the IPO dataset.
-
----
-
-## Output File
-
-The current exported IPO dataset is:
-
-`Documents/Dataset_WS/Raw_Data/IPO.xlsx`
-
 
